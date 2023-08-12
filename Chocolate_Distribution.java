@@ -1,5 +1,5 @@
 import java.util.*;
-
+// link https://www.geeksforgeeks.org/chocolate-distribution-problem/
 public class Chocolate_Distribution {
 
     static int findMinDiff(int arr[], int n, int m)
