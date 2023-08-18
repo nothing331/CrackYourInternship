@@ -1,0 +1,20 @@
+https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/description/
+
+class Solution {
+    public TreeNode constructFromPrePost(int[] PRE, int[] POST) {
+        return build(PRE, POST);
+    }
+    int pre = 0, post = 0;
+    TreeNode build(int[] PRE, int[] POST) {
+        TreeNode n = new TreeNode(PRE[pre]);
+        pre++;
+        if (n.val != POST[post]) {
+            n.left = build(PRE, POST);
+        }
+        if (n.val != POST[post]) {
+            n.right = build(PRE, POST);
+        }
+        post++;
+        return n;
+    }
+}
