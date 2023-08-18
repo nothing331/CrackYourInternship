@@ -1,0 +1,32 @@
+link : https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/
+
+class Solution {
+    public int maxScore(int[] cardPoints, int k) {
+        int n = cardPoints.length;
+        int tot_sum = 0;
+        int sum_win = 0;
+        int left = 0;
+        int right = n - k; // Corrected initialization
+        
+        for (int i = left; i < right; i++) {
+            sum_win += cardPoints[i];
+        }
+        for (int cards : cardPoints) {
+            tot_sum += cards;
+        }
+
+        int max_sum = tot_sum - sum_win;
+        while (right < n) {
+            sum_win = sum_win - cardPoints[left] + cardPoints[right];
+            max_sum = Math.max(max_sum, tot_sum - sum_win);
+            left++;
+            right++;
+        }
+        
+        return max_sum; // Return the maximum score
+    }
+}
+
+
+
+here we used sliding window taking n-k elements in the sliding window and sub tracting it with total sum of the arr to get the max sum of 3 nums as per the condition given in the question 
