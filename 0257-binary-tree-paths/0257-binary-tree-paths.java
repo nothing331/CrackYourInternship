@@ -16,23 +16,28 @@
 class Solution {
     public List<String> binaryTreePaths(TreeNode root) {
         List<String> paths = new ArrayList<>();
-        if (root != null) {
-            dfs(root, "", paths);
+        if(root!=null){
+            dfs(root, "",paths);
         }
         return paths;
     }
-    private static void dfs(TreeNode node, String path, List<String> paths) {
-        path += node.val;
+    public void dfs(TreeNode root, String path, List<String> paths) {
+        // Append the current node's value to the path
+        path += root.val;
 
-        if (node.left == null && node.right == null) {
+        // If this is a leaf node, add the path to the list
+        if (root.right == null && root.left == null) {
             paths.add(path);
         } else {
+            // If it's not a leaf node, append "->" to the path
             path += "->";
-            if (node.left != null) {
-                dfs(node.left, path, paths);
+            if (root.right != null) {
+                // Recursively explore the right subtree
+                dfs(root.right, path, paths);
             }
-            if (node.right != null) {
-                dfs(node.right, path, paths);
+            if (root.left != null) {
+                // Recursively explore the left subtree
+                dfs(root.left, path, paths);
             }
         }
     }
